@@ -46,19 +46,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-//            Greeting(name = "User")
-            val painter = painterResource(id = R.drawable.user)
-            val description = "User Profile Picture"
-            Box(modifier = Modifier.padding(16.dp))
-            {
-                ImageCard(
-                    painter = painter,
-                    contentDescription = description, title = description,
-                    modifier = Modifier
-                        .height(with(LocalDensity.current){360.toDp()})
-                        .width(with(LocalDensity.current){407.toDp()})
-                )
-            }
+            ProfileCard("User Profile")
         }
     }
 }
@@ -75,21 +63,7 @@ fun GreetingPreview() {
 @Composable
 fun ImageCardPreview()
 {
-    val painter = painterResource(id = R.drawable.user)
-    val description = "User Profile Picture"
-    Box(modifier = Modifier.fillMaxSize())
-    {
-        Box(modifier = Modifier.padding(16.dp))
-        {
-            ImageCard(
-                painter = painter,
-                contentDescription = description, title = description,
-                modifier = Modifier
-                    .height(with(LocalDensity.current){360.toDp()})
-                    .width(with(LocalDensity.current){407.toDp()})
-            )
-        }
-    }
+    ProfileCard("User Profile")
 }
 
 @Preview(name = "Styling Text", showBackground = true)
@@ -161,12 +135,13 @@ fun ImageCard(painter: Painter, contentDescription: String, title: String, modif
             )
             Box(modifier = Modifier
                 .fillMaxSize()
-                .background(Brush.verticalGradient(
-                    colors = listOf(
-                        Color.Transparent,
-                        Color.Black
+                .background(
+                    Brush.verticalGradient(
+                        colors = listOf(
+                            Color.Transparent,
+                            Color.Black
                         ),
-                    startY = 180f
+                        startY = 180f
                     )
                 )
             )
@@ -185,6 +160,22 @@ fun ImageCard(painter: Painter, contentDescription: String, title: String, modif
                 )
             }
         }
+    }
+}
+
+@Composable
+fun ProfileCard(description: String)
+{
+    val painter = painterResource(id = R.drawable.user)
+    Box(modifier = Modifier.padding(16.dp))
+    {
+        ImageCard(
+            painter = painter,
+            contentDescription = description, title = description,
+            modifier = Modifier
+                .height(with(LocalDensity.current) { 360.toDp() })
+                .width(with(LocalDensity.current) { 407.toDp() })
+        )
     }
 }
 
