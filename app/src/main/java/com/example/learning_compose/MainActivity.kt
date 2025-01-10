@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
 //            Greeting(name = "User")
             val painter = painterResource(id = R.drawable.user)
             val description = "User Profile Picture"
-            Box(modifier = Modifier.fillMaxWidth(0.5f).padding(16.dp))
+            Box(modifier = Modifier.padding(16.dp))
             {
                 ImageCard(
                     painter = painter,
@@ -71,7 +71,7 @@ fun GreetingPreview() {
     }
 }
 
-@Preview(name = "ImageCardPreview", showBackground = true, device = Devices.PIXEL_4)
+@Preview(name = "Image Card", showBackground = true, device = Devices.PIXEL_4)
 @Composable
 fun ImageCardPreview()
 {
@@ -79,7 +79,7 @@ fun ImageCardPreview()
     val description = "User Profile Picture"
     Box(modifier = Modifier.fillMaxSize())
     {
-        Box(modifier = Modifier.fillMaxWidth(0.5f).padding(16.dp))
+        Box(modifier = Modifier.padding(16.dp))
         {
             ImageCard(
                 painter = painter,
@@ -90,6 +90,13 @@ fun ImageCardPreview()
             )
         }
     }
+}
+
+@Preview(name = "Styling Text", showBackground = true)
+@Composable
+fun StylingTextPreview()
+{
+
 }
 
 @Composable
@@ -179,4 +186,10 @@ fun ImageCard(painter: Painter, contentDescription: String, title: String, modif
             }
         }
     }
+}
+
+@Composable
+fun StylingText()
+{
+
 }
