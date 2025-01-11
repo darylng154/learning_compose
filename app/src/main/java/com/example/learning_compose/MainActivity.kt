@@ -15,15 +15,12 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,10 +31,19 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.learning_compose.ui.theme.Learning_composeTheme
@@ -46,7 +52,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ProfileCard("User Profile")
+            ColumnOfStyledText()
         }
     }
 }
@@ -70,7 +76,7 @@ fun ImageCardPreview()
 @Composable
 fun StylingTextPreview()
 {
-
+    ColumnOfStyledText()
 }
 
 @Composable
@@ -180,7 +186,94 @@ fun ProfileCard(description: String)
 }
 
 @Composable
-fun StylingText()
+fun StylingText(text: String)
 {
+    val bungeeFont = FontFamily(Font(R.font.bungee_spice_regular))
 
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .background(Color(0xFF101010)))
+    {
+        Text(
+            /* buildAnnotatedString
+               - lets you style each text differently
+               - similar to StringBuilder
+            */
+            text = text,
+            fontSize = 30.sp,
+            color = Color.White,
+            textAlign = TextAlign.Center,
+            fontFamily = bungeeFont,
+            fontStyle = FontStyle.Italic,
+            fontWeight = FontWeight.Bold,    // unsupported by font
+            textDecoration = TextDecoration.Underline
+        )
+    }
+}
+
+@Composable
+fun StylingText(text: AnnotatedString)
+{
+    val bungeeFont = FontFamily(Font(R.font.bungee_spice_regular))
+
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .background(Color(0xFF101010)))
+    {
+        Text(
+            /* buildAnnotatedString
+               - lets you style each text differently
+               - similar to StringBuilder
+            */
+            text = text,
+            fontSize = 30.sp,
+            color = Color.White,
+            textAlign = TextAlign.Center,
+            fontFamily = bungeeFont,
+            fontStyle = FontStyle.Italic,
+            fontWeight = FontWeight.Bold,    // unsupported by font
+            textDecoration = TextDecoration.Underline
+        )
+    }
+}
+
+@Composable
+fun AnnotatedText()
+{
+    val annotedStr = buildAnnotatedString {
+        withStyle(
+            style = SpanStyle(
+                color = Color.Cyan,
+                fontStyle = FontStyle.Normal
+            )
+        )
+        {
+            append("This Text Will Be ")
+        }
+        withStyle(
+            style = SpanStyle(
+                color = Color.Magenta,
+                fontStyle = FontStyle.Italic,
+                textDecoration = TextDecoration.LineThrough
+            )
+        )
+        {
+            append("Styled Differently")
+        }
+    }
+    StylingText(text = annotedStr)
+}
+
+@Composable
+fun ColumnOfStyledText()
+{
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceEvenly
+    )
+    {
+
+        StylingText("This Text Will Be Styled")
+        AnnotatedText()
+    }
 }
