@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MultipleColorBox()
+            MyScaffold()
         }
     }
 }
@@ -57,4 +57,18 @@ fun ColorBoxPreview()
 fun MultipleColorBoxPreview()
 {
     MultipleColorBox()
+}
+
+@Preview(name = "My Snackbar", showBackground = true)
+@Composable
+fun MySnackbarPreview()
+{
+    MySnackbar()
+}
+
+@Preview(name = "My Scaffold", showBackground = true)
+@Composable
+fun MyScaffoldPreview()
+{
+    MyScaffold()
 }
