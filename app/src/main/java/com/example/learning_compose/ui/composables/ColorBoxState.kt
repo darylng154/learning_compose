@@ -10,6 +10,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import kotlin.random.Random
 
 // uses internal state
@@ -90,4 +91,20 @@ fun MultipleColorBox()
             topColorState.value = it
         }
     }
+}
+
+@Preview(name = "Color Box State", showBackground = true)
+@Composable
+fun ColorBoxPreview()
+{
+    ColorBox(
+        Modifier.fillMaxSize()
+    )
+}
+
+@Preview(name = "Multiple Color Box State", showBackground = true)
+@Composable
+fun MultipleColorBoxPreview()
+{
+    MultipleColorBox()
 }

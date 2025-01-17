@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.learning_compose.R
 
@@ -114,4 +115,11 @@ fun ColumnOfStyledText()
         StylingText("This Text Will Be Styled")
         AnnotatedText()
     }
+}
+
+@Preview(name = "Styling Text", showBackground = true)
+@Composable
+fun StylingTextPreview()
+{
+    ColumnOfStyledText()
 }

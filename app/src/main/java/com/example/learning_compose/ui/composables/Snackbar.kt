@@ -29,6 +29,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.w3c.dom.Text
@@ -54,13 +55,13 @@ fun MyScaffold()
     }
 
     //  MutableState<String> object
-//    val textFieldState = remember {
+//    val text = remember {
 //        mutableStateOf("")
 //    }
 
     // String object
     // - basically textFieldState.value
-    var textFieldState by remember {
+    var text by remember {
         mutableStateOf("")
     }
 
@@ -88,9 +89,9 @@ fun MyScaffold()
                     Text("Please enter your name")
                 },
                 singleLine = true,
-                value = textFieldState,
+                value = text,
                 onValueChange = {
-                    textFieldState = it.toString()
+                    text = it.toString()
             })
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -99,7 +100,7 @@ fun MyScaffold()
                 onClick = {
                     // uses a coroutine
                     scope.launch {
-                        snackBarHostState.showSnackbar("Hello $textFieldState")
+                        snackBarHostState.showSnackbar("Hello $text")
                     }
                 }
             )
@@ -108,4 +109,18 @@ fun MyScaffold()
             }
         }
     }
+}
+
+@Preview(name = "My Snackbar", showBackground = true)
+@Composable
+fun MySnackbarPreview()
+{
+    MySnackbar()
+}
+
+@Preview(name = "My Scaffold", showBackground = true)
+@Composable
+fun MyScaffoldPreview()
+{
+    MyScaffold()
 }

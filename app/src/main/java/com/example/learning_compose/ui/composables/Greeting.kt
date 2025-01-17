@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.example.learning_compose.ui.theme.Learning_composeTheme
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Greeting(name: String?, greetingTextModifier: Modifier? = Modifier) {
 //    Column(
 //        modifier = Modifier
 //            .fillMaxSize()
@@ -42,8 +42,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
     {
         Text(
-            text = "Hello $name!",
-            modifier = modifier.offset()
+            text = if(name != null && !name.equals("")) "Hello $name!" else "Hello!",
+            modifier = greetingTextModifier ?: Modifier // modifier = if(modifier != null) modifier else Modifier
         )
         Text(text = "Test")
         Text(text = "Should Be on Bottom")
@@ -60,5 +60,13 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         {
             Text(text = "Green Text")
         }
+    }
+}
+
+@Preview(name = "Greeting",showBackground = true)
+@Composable
+fun GreetingPreview() {
+    Learning_composeTheme {
+        Greeting("User")
     }
 }
